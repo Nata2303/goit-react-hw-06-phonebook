@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 import ContactForm from './ContactForm/contactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/filter';
@@ -58,17 +60,19 @@ const App = () => {
   );
 
   return (
-    <div className={style.app}>
-      <h1>Phonebook</h1>
-      <ContactForm onAddContact={addContact} />
+    <Provider store={store}>
+      <div className={style.app}>
+        <h1>Phonebook</h1>
+        <ContactForm onAddContact={addContact} />
 
-      <h2>Contacts</h2>
-      <Filter value={filter} onChangeFilter={changeFilter} />
-      <ContactList
-        contacts={filteredContacts}
-        onDeleteContact={deleteContact}
-      />
-    </div>
+        <h2>Contacts</h2>
+        <Filter value={filter} onChangeFilter={changeFilter} />
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={deleteContact}
+        />
+      </div>
+    </Provider>
   );
 };
 
