@@ -1,54 +1,31 @@
-import React, { useState } from 'react';
-// import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact, updateFilter } from '../../redux/contactsSlice';
-import style from './contactForm.module.css'
-
-
+import { addContact } from '../../redux/contactsSlice';
+import style from './contactForm.module.css';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleNumberChange = (event) => {
-    setNumber(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
+    const name = event.target.name.value;
+    const number = event.target.number.value;
+
     dispatch(addContact({ name, number }));
-    dispatch(updateFilter(''));
-    setName('');
-    setNumber('');
+
+    event.target.reset();
   };
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
       <label htmlFor="name" className={style.label}>
         Name
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleNameChange}
-          required
-        />
+        <input type="text" name="name" required />
       </label>
 
       <label htmlFor="number" className={style.label}>
         Number
-        <input
-          type="text"
-          name="number"
-          value={number}
-          onChange={handleNumberChange}
-          required
-        />
+        <input type="text" name="number" required />
       </label>
 
       <button type="submit" className={style.add}>
@@ -58,5 +35,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm
-
+export default ContactForm;

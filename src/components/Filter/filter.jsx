@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateFilter } from '../../redux/contactsSlice';
 import style from './filter.module.css';
 
@@ -7,8 +7,7 @@ const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.contacts.filter);
 
-  const handleFilterChange = event => {
-    const newFilterValue = event.target.value;
+  const handleFilterChange = newFilterValue => {
     dispatch(updateFilter(newFilterValue));
   };
 
@@ -19,7 +18,7 @@ const Filter = () => {
         type="text"
         id="filter"
         value={filter}
-        onChange={handleFilterChange}
+        onChange={event => handleFilterChange(event.target.value)}
       />
     </div>
   );

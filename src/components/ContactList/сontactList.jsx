@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
 import style from './ContactList.module.css';
 
@@ -18,7 +18,7 @@ const ContactList = () => {
           <span className={style.contact}>{name}: </span>
           <span className={style.contact}>{number}</span>
           <button
-            onClick={() => handleDeleteContact(id)}
+            onClick={() => handleDeleteContact(id)} // Обробник видалення
             className={style.delete}
           >
             Delete
