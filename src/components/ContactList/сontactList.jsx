@@ -1,13 +1,13 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
-import style from './ContactList.module.css'
+import style from './ContactList.module.css';
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(state => state.contacts.contacts);
 
-  const handleDeleteContact = (id) => {
+  const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
 
