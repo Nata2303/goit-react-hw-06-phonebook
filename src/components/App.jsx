@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'; // Імпортуйте PersistGate
-import { store, persistor } from '../redux/store';
+import { store, persistor } from 'redux/store';
 import ContactForm from './ContactForm/contactForm';
 import ContactList from './ContactList/сontactList';
 import Filter from './Filter/filter';
