@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-  contacts: [],
-  filter:'',
+  contacts: []
 };
 
 const contactsSlice = createSlice({
@@ -10,7 +10,11 @@ const contactsSlice = createSlice({
   initialState,
   reducers: {
     addContact: (state, action) => {
-      state.contacts.push(action.payload);
+      const newContact = {
+        id: uuidv4(),
+        ...action.payload,
+      };
+      state.contacts.push(newContact);
     },
     deleteContact: (state, action) => {
       state.contacts = state.contacts.filter(
