@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
-  contacts: []
+  contacts: [],
+  filter: '',
 };
 
 const contactsSlice = createSlice({
@@ -14,6 +15,15 @@ const contactsSlice = createSlice({
         id: uuidv4(),
         ...action.payload,
       };
+      
+      const existingContact = state.contacts.find(
+        contact => contact.name === newContact.name
+      );
+      if (existingContact) {
+        alert('This name already exists in the contact list.');
+        return;
+      }
+      
       state.contacts.push(newContact);
     },
     deleteContact: (state, action) => {
